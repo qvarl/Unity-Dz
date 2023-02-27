@@ -17,20 +17,20 @@ public class Siren_Triggered : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         _target = 1f;
-        StartCoroutine(VolumeChanger(_target));
+        StartCoroutine(VolumeChanger());
     }
 
     private void OnTriggerExit(Collider other)
     {
         _target = 0f;
-        StartCoroutine(VolumeChanger(_target));
+        StartCoroutine(VolumeChanger());
     }
 
-   private IEnumerator VolumeChanger(float volume)
+   private IEnumerator VolumeChanger()
     {
-        while (_audio.volume != volume)
+        while (_audio.volume != _target)
         {
-            _audio.volume = Mathf.MoveTowards(_audio.volume, volume, _duration * Time.deltaTime);
+            _audio.volume = Mathf.MoveTowards(_audio.volume, _target, _duration * Time.deltaTime);
             yield return null;
         }
     }
