@@ -5,8 +5,8 @@ using UnityEngine;
 public class AreaZone : MonoBehaviour
 {
     private Siren _siren;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
         _siren = GetComponent<Siren>();
     }
