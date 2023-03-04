@@ -1,23 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AreaZone : MonoBehaviour
 {
-    private Siren _siren;
-    // Start is called before the first frame update
-    void Start()
-    {
-        _siren = GetComponent<Siren>();
-    }
+    [SerializeField] private UnityEvent _entered;
+    [SerializeField] private UnityEvent _exited;
 
     private void OnTriggerEnter(Collider other)
     {
-        _siren.VolumeUp();
+        if (other.TryGetComponent<Movement>(out Movement movement))
+        {
+            _entered?.Invoke();
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        _siren.VolumeDown();
+        if (other.TryGetComponent<Movement>(out Movement movement))
+        {
+            _exited?.Invoke();
+        }
     }
 }

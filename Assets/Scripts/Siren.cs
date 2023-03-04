@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
+
 public class Siren : MonoBehaviour
 {
     [SerializeField] private float _duration;
@@ -9,7 +11,7 @@ public class Siren : MonoBehaviour
     private AudioSource _audio;
     private float _minVolume = 0f;
     private float _maxVolume = 1f;
-    Coroutine _volumeChanged;
+    private Coroutine _volumeChanged;
 
     private void Start()
     {
